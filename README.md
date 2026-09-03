@@ -16,10 +16,6 @@ A MagicMirror² module for seeing at a glance whether friends, family, and conta
 
 The map is intentionally low-detail so it remains crisp and inexpensive to render on a Raspberry Pi. City coordinates are supplied by the user and never transmitted. The default cards favor local time and ambient daylight state over dense astronomical detail.
 
-## Development status
-
-**Beta and actively maintained.** The module has been exercised on the Seymour MagicMirror appliance at 1024×600. Validation on a second, ordinary MagicMirror installation is planned before declaring the first stable release.
-
 ## Screenshots
 
 ### Large layout
@@ -34,7 +30,7 @@ The map is intentionally low-detail so it remains crisp and inexpensive to rende
 
 ![Large layout with daylight-aware analog clock faces](screenshots/world-clock-map-large-analog.png)
 
-These beta screenshots were captured on Seymour. The circular menu control at the lower right belongs to the host interface and is not part of MMM-WorldClockMap.
+The circular menu control at the lower right belongs to the surrounding mirror interface and is not part of MMM-WorldClockMap.
 
 ## Installation
 
@@ -145,7 +141,6 @@ Run `npm test` before contributing. The tests also verify that every locale has 
 
 - [MMM-Worldclock](https://github.com/ulrichwisser/MMM-Worldclock) displays multiple timezone clocks and inspired the familiar multi-clock use case.
 - MagicMirror's [default clock](https://docs.magicmirror.builders/modules/clock.html) documents the platform's expected timezone and 12/24-hour behavior.
-- The official [module development guide](https://docs.magicmirror.builders/development/core-module-file.html) defines the lifecycle, DOM, styling, and translation APIs used here.
 
 MMM-WorldClockMap differs by combining responsive clock presentations with an offline solar map, ambient daylight status, optional coordinate-based sun times, semantic output, and current localization practices.
 
