@@ -4,6 +4,11 @@ All notable changes to this project are documented here.
 
 ## [Unreleased]
 
+### Fixed
+
+- Kept large-layout digital times on one line and scaled them to the available card width.
+- Wrapped large-layout cards before narrow MagicMirror regions could squeeze them beyond readability.
+
 ## [0.1.0] - 2026-09-02
 
 ### Added
