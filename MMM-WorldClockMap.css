@@ -44,15 +44,15 @@
 
 .mmm-worldclockmap--large .mmm-worldclockmap__map { align-self: stretch; box-sizing: border-box; max-width: none; width: 100%; }
 .mmm-worldclockmap--large .mmm-worldclockmap__map { height: var(--wcm-map-height, 260px); }
-.mmm-worldclockmap--large .mmm-worldclockmap__clocks { grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); width: 100%; }
-.mmm-worldclockmap--large .mmm-worldclockmap__clock { container-type: inline-size; min-height: 110px; min-width: 0; padding: 14px 8px; }
+.mmm-worldclockmap--large .mmm-worldclockmap__clocks { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); width: 100%; }
+.mmm-worldclockmap--large .mmm-worldclockmap__clock { container-type: inline-size; min-height: 92px; min-width: 0; padding: 10px 6px; }
 .mmm-worldclockmap--large .mmm-worldclockmap__analog { height: 132px; width: 132px; }
-.mmm-worldclockmap--large .mmm-worldclockmap__details h3 { font-size: 23px; }
+.mmm-worldclockmap--large .mmm-worldclockmap__details h3 { font-size: 20px; }
 .mmm-worldclockmap--large .mmm-worldclockmap__time { font-size: 30px; white-space: nowrap; }
-.mmm-worldclockmap--large .mmm-worldclockmap__meta { font-size: 17px; }
+.mmm-worldclockmap--large .mmm-worldclockmap__meta { font-size: 14px; }
 
 @supports (font-size: 1cqi) {
-  .mmm-worldclockmap--large .mmm-worldclockmap__time { font-size: clamp(24px, 16cqi, 36px); }
+  .mmm-worldclockmap--large .mmm-worldclockmap__time { font-size: clamp(21px, 16cqi, 34px); }
 }
 
 .mmm-worldclockmap--compact { align-items: stretch; display: grid; gap: 10px; grid-template-columns: minmax(0, 3fr) minmax(150px, 1fr); }

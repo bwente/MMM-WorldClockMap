@@ -121,24 +121,24 @@ Module.register("MMM-WorldClockMap", {
     if (!matrix) return;
     const scaleX = Math.hypot(matrix.a, matrix.b) || 1;
     const scaleY = Math.hypot(matrix.c, matrix.d) || 1;
-    const labelScaleX = scaleY / scaleX;
     const labelPixels = Math.max(12, Math.min(48, Number(this.config.mapLabelSize) || 18));
     const radiusPixels = Math.max(4, labelPixels * 0.22);
     const placed = [];
     for (const marker of svg.querySelectorAll(".wcm-marker")) {
       let side = marker.dataset.side === "end" ? -1 : 1;
       const labels = marker.querySelectorAll("text");
+      const content = marker.querySelector(".wcm-marker-content");
       const point = marker.querySelector("ellipse");
-      point.setAttribute("rx", radiusPixels / scaleX);
-      point.setAttribute("ry", radiusPixels / scaleY);
-      labels[0].style.fontSize = `${labelPixels / scaleY}px`;
-      labels[0].setAttribute("y", -3 / scaleY);
-      labels[1].style.fontSize = `${labelPixels * 0.78 / scaleY}px`;
-      labels[1].setAttribute("y", (labelPixels * 0.82) / scaleY);
+      content.setAttribute("transform", `scale(${1 / scaleX} ${1 / scaleY})`);
+      point.setAttribute("rx", radiusPixels);
+      point.setAttribute("ry", radiusPixels);
+      labels[0].style.fontSize = `${labelPixels}px`;
+      labels[0].setAttribute("y", -3);
+      labels[1].style.fontSize = `${labelPixels * 0.78}px`;
+      labels[1].setAttribute("y", labelPixels * 0.82);
       const position = () => {
         for (const label of labels) {
-          label.setAttribute("transform", `scale(${labelScaleX} 1)`);
-          label.setAttribute("x", side * (radiusPixels + 5) / scaleY);
+          label.setAttribute("x", side * (radiusPixels + 5));
           label.setAttribute("text-anchor", side < 0 ? "end" : "start");
         }
       };

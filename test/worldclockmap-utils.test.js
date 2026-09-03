@@ -84,6 +84,7 @@ test("map output escapes user labels", () => {
   assert.ok(!svg.includes("<script>"));
   assert.ok(svg.includes('href="worldOutlineLow.svg"'));
   assert.ok(svg.includes("<ellipse"));
+  assert.ok(svg.includes('class="wcm-marker-content"'));
 });
 
 test("translation files keep English keys", () => {
