@@ -1,0 +1,29 @@
+{
+  "name": "mmm-worldclockmap",
+  "version": "0.1.0",
+  "description": "Accessible world clocks with an optional real-time day and night map for MagicMirror².",
+  "main": "MMM-WorldClockMap.js",
+  "scripts": {
+    "test": "node --test",
+    "test:translations": "node scripts/check-translations.js"
+  },
+  "keywords": [
+    "magicmirror",
+    "magicmirror2",
+    "world-clock",
+    "timezone"
+  ],
+  "author": "Brian Wente",
+  "license": "MIT AND CC-BY-NC-4.0",
+  "homepage": "https://github.com/bwente/MMM-WorldClockMap#readme",
+  "bugs": {
+    "url": "https://github.com/bwente/MMM-WorldClockMap/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bwente/MMM-WorldClockMap.git"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
