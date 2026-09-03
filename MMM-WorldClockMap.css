@@ -18,7 +18,7 @@
 .wcm-land { opacity: 0.48; }
 .wcm-night-fill { fill: rgb(0 0 0 / 63%); stroke: none; }
 .wcm-terminator { fill: none; stroke: rgb(255 255 255 / 55%); stroke-width: 0.8; }
-.wcm-marker circle { fill: var(--wcm-accent); }
+.wcm-marker ellipse { fill: var(--wcm-accent); }
 .wcm-marker text { fill: #fff; font-size: 18px; font-weight: 700; paint-order: stroke; stroke: rgb(0 0 0 / 82%); stroke-linejoin: round; stroke-width: 2.5px; vector-effect: non-scaling-stroke; }
 .wcm-marker .wcm-marker-time { font-size: 82%; font-weight: 500; }
 
@@ -42,7 +42,7 @@
 .mmm-worldclockmap__meta { color: var(--color-text-dimmed, #aaa); font-size: 12px; line-height: 1.2; }
 .mmm-worldclockmap__error { border-left: 3px solid #e85d5d; padding-left: 10px; }
 
-.mmm-worldclockmap--large .mmm-worldclockmap__map { width: 100%; }
+.mmm-worldclockmap--large .mmm-worldclockmap__map { align-self: stretch; box-sizing: border-box; max-width: none; width: 100%; }
 .mmm-worldclockmap--large .mmm-worldclockmap__clocks { grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr)); width: 100%; }
 .mmm-worldclockmap--large .mmm-worldclockmap__clock { container-type: inline-size; min-height: 110px; min-width: 0; padding: 14px 8px; }
 .mmm-worldclockmap--large .mmm-worldclockmap__analog { height: 132px; width: 132px; }

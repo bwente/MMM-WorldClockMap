@@ -40,6 +40,7 @@ test("draws only the open solar terminator as a visible stroke", () => {
   const svg = utils.createMapSvg(date, [], () => "", "worldOutlineLow.svg");
   assert.ok(svg.includes('class="wcm-night-fill"'));
   assert.ok(svg.includes('class="wcm-terminator"'));
+  assert.ok(svg.includes('preserveAspectRatio="none"'));
 });
 
 test("identifies local daylight as a boolean state", () => {
@@ -80,6 +81,7 @@ test("map output escapes user labels", () => {
   assert.ok(svg.includes("&lt;script&gt;"));
   assert.ok(!svg.includes("<script>"));
   assert.ok(svg.includes('href="worldOutlineLow.svg"'));
+  assert.ok(svg.includes("<ellipse"));
 });
 
 test("translation files keep English keys", () => {

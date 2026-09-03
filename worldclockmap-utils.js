@@ -129,9 +129,9 @@
       const [x, y] = project(clock.longitude, clock.latitude);
       const anchor = x > 820 ? "end" : "start";
       const dx = anchor === "end" ? -9 : 9;
-      return `<g class="wcm-marker" data-side="${anchor}" transform="translate(${x} ${y})"><circle r="4.5"/><text x="${dx}" y="-4" text-anchor="${anchor}">${escapeHtml(clock.label || clock.timeZone)}</text><text class="wcm-marker-time" x="${dx}" y="12" text-anchor="${anchor}">${escapeHtml(getTime(clock))}</text></g>`;
+      return `<g class="wcm-marker" data-side="${anchor}" transform="translate(${x} ${y})"><ellipse rx="4.5" ry="4.5"/><text x="${dx}" y="-4" text-anchor="${anchor}">${escapeHtml(clock.label || clock.timeZone)}</text><text class="wcm-marker-time" x="${dx}" y="12" text-anchor="${anchor}">${escapeHtml(getTime(clock))}</text></g>`;
     }).join("");
-    return `<svg viewBox="-2 ${MAP_TOP} 964 ${MAP_BOTTOM - MAP_TOP}" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><image class="wcm-land" href="${escapeHtml(mapUrl)}" x="-2" y="${MAP_TOP}" width="964" height="${MAP_BOTTOM - MAP_TOP}"/><g class="wcm-grid">${grid}</g><path class="wcm-night-fill" d="${nightPath(date)}"/><path class="wcm-terminator" d="${terminatorPath(date)}"/><g class="wcm-markers">${markers}</g></svg>`;
+    return `<svg viewBox="-2 ${MAP_TOP} 964 ${MAP_BOTTOM - MAP_TOP}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><image class="wcm-land" href="${escapeHtml(mapUrl)}" x="-2" y="${MAP_TOP}" width="964" height="${MAP_BOTTOM - MAP_TOP}"/><g class="wcm-grid">${grid}</g><path class="wcm-night-fill" d="${nightPath(date)}"/><path class="wcm-terminator" d="${terminatorPath(date)}"/><g class="wcm-markers">${markers}</g></svg>`;
   }
 
   function isDaytime(date, latitude, longitude) {
