@@ -93,7 +93,8 @@ Use a wide region such as `top_center`, `middle_center`, `bottom_center`, or `fu
 | `showDayNightTint` | boolean | `true` | Warmly tint daylight cards and coolly tint nighttime cards. |
 | `referenceTimeZone` | string/null | `null` | IANA timezone used for differences. `null` uses the mirror timezone. |
 | `timeFormat` | string | `"auto"` | `"auto"`, `"12"`, or `"24"`. Auto follows the locale. |
-| `mapHeight` | number | `260` | Map height in CSS pixels, with a minimum of 120. |
+| `mapHeight` | number | `260` | Map height in CSS pixels, with a minimum of 120. Used by landscape and fixed-height map modes. |
+| `mapFit` | string | `"auto"` | `"auto"` preserves the complete map and uses a proportional full-width map in portrait; `"contain"` always preserves the complete map within `mapHeight`; `"stretch"` fills both dimensions for specialized displays but distorts geography. |
 | `mapLabelSize` | number | `18` | Desired city-label height in rendered CSS pixels, clamped from 12 to 48. It remains visually constant when `mapHeight` changes. |
 | `updateInterval` | number/null | `null` | Refresh interval in milliseconds, clamped to at least one second. Auto uses 30 seconds normally or one second when showing seconds. |
 | `animationSpeed` | number | `0` | MagicMirror DOM transition time. Zero avoids a flash every second. |
@@ -122,6 +123,8 @@ config: { layout: "compact", showMap: true }
 // A single stack of tiles, optionally with clock faces at left
 config: { layout: "line", showAnalog: true }
 ```
+
+For portrait mirrors, `layout: "large"` with the default `mapFit: "auto"` uses the region width and derives the map height from its natural proportions. In landscape, auto mode respects `mapHeight` and centers the complete map without distortion. Use `mapFit: "stretch"` only when filling a specialized fixed-aspect display is more important than geographic proportions.
 
 ## Notifications
 

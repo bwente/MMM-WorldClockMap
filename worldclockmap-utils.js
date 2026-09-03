@@ -123,7 +123,7 @@
     return `M${points.map((point) => point.join(",")).join(" L")} L${MAP_WIDTH},${nightPoleY} L0,${nightPoleY} Z`;
   }
 
-  function createMapSvg(date, clocks, getTime, mapUrl = "worldOutlineLow.svg") {
+  function createMapSvg(date, clocks, getTime, mapUrl = "worldOutlineLow.svg", mapFit = "contain") {
     const grid = Array.from({ length: 13 }, (_, index) => `<line x1="${index * 80}" y1="${MAP_TOP}" x2="${index * 80}" y2="${MAP_BOTTOM}"/>`).join("");
     const markers = clocks.filter((clock) => Number.isFinite(clock.latitude) && Number.isFinite(clock.longitude)).map((clock) => {
       const [x, y] = project(clock.longitude, clock.latitude);
@@ -131,7 +131,8 @@
       const dx = anchor === "end" ? -9 : 9;
       return `<g class="wcm-marker" data-side="${anchor}" transform="translate(${x} ${y})"><ellipse rx="4.5" ry="4.5"/><text x="${dx}" y="-4" text-anchor="${anchor}">${escapeHtml(clock.label || clock.timeZone)}</text><text class="wcm-marker-time" x="${dx}" y="12" text-anchor="${anchor}">${escapeHtml(getTime(clock))}</text></g>`;
     }).join("");
-    return `<svg viewBox="-2 ${MAP_TOP} 964 ${MAP_BOTTOM - MAP_TOP}" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><image class="wcm-land" href="${escapeHtml(mapUrl)}" x="-2" y="${MAP_TOP}" width="964" height="${MAP_BOTTOM - MAP_TOP}"/><g class="wcm-grid">${grid}</g><path class="wcm-night-fill" d="${nightPath(date)}"/><path class="wcm-terminator" d="${terminatorPath(date)}"/><g class="wcm-markers">${markers}</g></svg>`;
+    const preserveAspectRatio = mapFit === "stretch" ? "none" : "xMidYMid meet";
+    return `<svg viewBox="-2 ${MAP_TOP} 964 ${MAP_BOTTOM - MAP_TOP}" preserveAspectRatio="${preserveAspectRatio}" xmlns="http://www.w3.org/2000/svg"><image class="wcm-land" href="${escapeHtml(mapUrl)}" x="-2" y="${MAP_TOP}" width="964" height="${MAP_BOTTOM - MAP_TOP}"/><g class="wcm-grid">${grid}</g><path class="wcm-night-fill" d="${nightPath(date)}"/><path class="wcm-terminator" d="${terminatorPath(date)}"/><g class="wcm-markers">${markers}</g></svg>`;
   }
 
   function isDaytime(date, latitude, longitude) {

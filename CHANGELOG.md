@@ -8,7 +8,7 @@ All notable changes to this project are documented here.
 
 - Kept large-layout digital times on one line and scaled them to the available card width.
 - Wrapped large-layout cards before narrow MagicMirror regions could squeeze them beyond readability.
-- Stretched map artwork to the full available region width without distorting marker dots or labels.
+- Added responsive map fitting: proportional full-width maps in portrait, contained maps in landscape, and an explicit stretch option for specialized displays.
 
 ## [0.1.0] - 2026-09-02
 

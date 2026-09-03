@@ -40,7 +40,9 @@ test("draws only the open solar terminator as a visible stroke", () => {
   const svg = utils.createMapSvg(date, [], () => "", "worldOutlineLow.svg");
   assert.ok(svg.includes('class="wcm-night-fill"'));
   assert.ok(svg.includes('class="wcm-terminator"'));
-  assert.ok(svg.includes('preserveAspectRatio="none"'));
+  assert.ok(svg.includes('preserveAspectRatio="xMidYMid meet"'));
+  const stretchedSvg = utils.createMapSvg(date, [], () => "", "worldOutlineLow.svg", "stretch");
+  assert.ok(stretchedSvg.includes('preserveAspectRatio="none"'));
 });
 
 test("identifies local daylight as a boolean state", () => {

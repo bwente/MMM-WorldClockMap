@@ -18,6 +18,7 @@ Module.register("MMM-WorldClockMap", {
     referenceTimeZone: null,
     timeFormat: "auto",
     mapHeight: 260,
+    mapFit: "auto",
     mapLabelSize: 18,
     updateInterval: null,
     animationSpeed: 0,
@@ -99,11 +100,12 @@ Module.register("MMM-WorldClockMap", {
     const map = document.createElement("div");
     map.className = "mmm-worldclockmap__map";
     const mapHeight = Math.max(120, Number(this.config.mapHeight) || 260);
-    if (layout === "compact") map.style.minHeight = `${mapHeight}px`;
-    else map.style.height = `${mapHeight}px`;
+    const mapFit = ["auto", "contain", "stretch"].includes(this.config.mapFit) ? this.config.mapFit : "auto";
+    map.classList.add(`mmm-worldclockmap__map--${mapFit}`);
+    map.style.setProperty("--wcm-map-height", `${mapHeight}px`);
     map.setAttribute("role", "img");
     map.setAttribute("aria-label", this.translate("DAY_NIGHT_MAP"));
-    map.innerHTML = WorldClockMapUtils.createMapSvg(this.now, this.config.clocks, (clock) => this.clockParts(clock).time, this.file("worldOutlineLow.svg"));
+    map.innerHTML = WorldClockMapUtils.createMapSvg(this.now, this.config.clocks, (clock) => this.clockParts(clock).time, this.file("worldOutlineLow.svg"), mapFit);
     requestAnimationFrame(() => this.sizeMapMarkers(map));
     if (typeof ResizeObserver === "function") {
       this.mapResizeObserver = new ResizeObserver(() => this.sizeMapMarkers(map));
