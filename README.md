@@ -26,6 +26,10 @@ The map is intentionally low-detail so it remains crisp and inexpensive to rende
 
 ![Compact layout with the world map beside vertically stacked clock tiles](screenshots/world-clock-map-compact.png)
 
+### Line layout
+
+![Line layout with aligned analog clocks and clock details](screenshots/world-clock-map-line.png)
+
 ### Large layout with analog clocks
 
 ![Large layout with daylight-aware analog clock faces](screenshots/world-clock-map-large-analog.png)

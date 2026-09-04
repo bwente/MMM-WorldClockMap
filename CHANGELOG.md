@@ -12,6 +12,7 @@ All notable changes to this project are documented here.
 - Made `mapLabelSize` an exact rendered-pixel target through inverse-scaled marker content.
 - Restored a single-row large clock grid and reduced its tile height and typography.
 - Refreshed the clocks immediately when MagicMirror shows a suspended module again.
+- Added a verified line-layout screenshot to the README.
 
 ## [0.1.0] - 2026-09-02
 
