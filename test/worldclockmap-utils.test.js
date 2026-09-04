@@ -92,10 +92,29 @@ test("translation files keep English keys", () => {
   assert.equal(process.exitCode, undefined);
 });
 
-test("declares English as the module translation fallback", () => {
+const loadModuleDefinition = () => {
   let definition;
   global.Module = { register: (_name, moduleDefinition) => { definition = moduleDefinition; } };
+  delete require.cache[require.resolve("../MMM-WorldClockMap.js")];
   require("../MMM-WorldClockMap.js");
   delete global.Module;
+  return definition;
+};
+
+test("declares English as the module translation fallback", () => {
+  const definition = loadModuleDefinition();
   assert.equal(Object.keys(definition.getTranslations())[0], "en");
+});
+
+test("refreshes immediately when resumed", () => {
+  const definition = loadModuleDefinition();
+  let started = false;
+  let updateSpeed = null;
+  definition.resume.call({
+    timer: undefined,
+    start() { started = true; },
+    updateDom(speed) { updateSpeed = speed; }
+  });
+  assert.equal(started, true);
+  assert.equal(updateSpeed, 0);
 });

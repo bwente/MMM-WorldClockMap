@@ -63,6 +63,7 @@ Module.register("MMM-WorldClockMap", {
   resume() {
     clearInterval(this.timer);
     this.start();
+    this.updateDom(0);
   },
 
   notificationReceived(notification) {

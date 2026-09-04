@@ -11,6 +11,7 @@ All notable changes to this project are documented here.
 - Added responsive map fitting: proportional full-width maps in portrait, contained maps in landscape, and an explicit stretch option for specialized displays.
 - Made `mapLabelSize` an exact rendered-pixel target through inverse-scaled marker content.
 - Restored a single-row large clock grid and reduced its tile height and typography.
+- Refreshed the clocks immediately when MagicMirror shows a suspended module again.
 
 ## [0.1.0] - 2026-09-02
 
