@@ -88,7 +88,7 @@ Module.register("MMM-WorldClockMap", {
       return root;
     }
 
-    if (this.config.showMap && layout !== "line") root.appendChild(this.buildMap(layout));
+    if (this.config.showMap && layout !== "line") root.appendChild(this.buildMap());
     const clocks = document.createElement("div");
     clocks.className = "mmm-worldclockmap__clocks";
     for (const clock of this.config.clocks) clocks.appendChild(this.buildClock(clock));
@@ -96,7 +96,7 @@ Module.register("MMM-WorldClockMap", {
     return root;
   },
 
-  buildMap(layout) {
+  buildMap() {
     this.mapResizeObserver?.disconnect();
     const map = document.createElement("div");
     map.className = "mmm-worldclockmap__map";

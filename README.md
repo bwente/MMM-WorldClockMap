@@ -45,6 +45,13 @@ git clone https://github.com/bwente/MMM-WorldClockMap.git
 
 No `npm install` is needed for normal use.
 
+## Update
+
+```sh
+cd ~/MagicMirror/modules/MMM-WorldClockMap
+git pull --ff-only
+```
+
 ## Configuration
 
 Add the module to `config/config.js`:
@@ -61,23 +68,23 @@ Add the module to `config/config.js`:
         label: "Cupertino",
         timeZone: "America/Los_Angeles",
         latitude: 37.323,
-        longitude: -122.0322
+        longitude: -122.0322,
       },
       {
         label: "New York",
         timeZone: "America/New_York",
         latitude: 40.7128,
-        longitude: -74.006
+        longitude: -74.006,
       },
       {
         label: "Stockholm",
         timeZone: "Europe/Stockholm",
         latitude: 59.3293,
-        longitude: 18.0686
-      }
-    ]
-  }
-}
+        longitude: 18.0686,
+      },
+    ],
+  },
+},
 ```
 
 Use a wide region such as `top_center`, `middle_center`, `bottom_center`, or `fullscreen_above` for the map. Set `showMap: false` for a conventional sidebar clock list.
@@ -119,13 +126,13 @@ Coordinates are optional as a pair. A clock without coordinates still displays t
 
 ```js
 // Full-width map over a full-width clock row
-config: { layout: "large", mapHeight: 360 }
+config: { layout: "large", mapHeight: 360 },
 
 // Map at left, vertically stacked clocks at right
-config: { layout: "compact", showMap: true }
+config: { layout: "compact", showMap: true },
 
 // A single stack of tiles, optionally with clock faces at left
-config: { layout: "line", showAnalog: true }
+config: { layout: "line", showAnalog: true },
 ```
 
 For portrait mirrors, `layout: "large"` with the default `mapFit: "auto"` uses the region width and derives the map height from its natural proportions. In landscape, auto mode respects `mapHeight` and centers the complete map without distortion. Use `mapFit: "stretch"` only when filling a specialized fixed-aspect display is more important than geographic proportions.
@@ -142,7 +149,7 @@ Companion integrations are optional; the module works normally without them.
 
 The module includes every locale currently shipped by MagicMirror², from Afrikaans (`af`) through Traditional Chinese (`zh-tw`). `Intl` localizes clock and calendar output. English is the complete fallback, translation keys are kept identical, and locale files are checked in tests.
 
-Run `npm test` before contributing. The tests also verify that every locale has exactly the English translation keys.
+Run `npm test` and `npm run lint` before contributing. The tests also verify that every locale has exactly the English translation keys.
 
 ## Similar modules and design context
 
@@ -153,7 +160,7 @@ MMM-WorldClockMap differs by combining responsive clock presentations with an of
 
 ## License
 
-The module's original source code and documentation are available under the MIT License.
+The module's original source code and documentation are available under the [MIT License](LICENSE).
 
 The bundled [`worldOutlineLow.svg`](worldOutlineLow.svg) map is adapted from the amCharts [World Outline SVG map](https://www.amcharts.com/svg-maps/?map=worldOutline) and is licensed separately under [Creative Commons Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/). It may be shared and adapted with attribution for non-commercial purposes. Commercial use requires separate permission or an appropriate amCharts license. The map content visible in the bundled screenshots is subject to the same terms.
 

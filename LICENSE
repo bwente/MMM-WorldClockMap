@@ -1,9 +1,3 @@
-MMM-WorldClockMap's original source code and documentation are licensed under
-the MIT License below. The bundled worldOutlineLow.svg map, and the map content
-visible within the bundled screenshots, are excluded from the MIT License.
-Those portions are derived from an amCharts map licensed under CC BY-NC 4.0.
-See THIRD_PARTY_NOTICES.md for source, attribution, modifications, and terms.
-
 MIT License
 
 Copyright (c) 2026 Brian Wente

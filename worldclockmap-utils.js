@@ -147,7 +147,6 @@
 
   function getSunTimes(date, latitude, longitude) {
     const start = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-    const lw = -longitude * RAD;
     const phi = latitude * RAD;
     const d = (start - Date.UTC(2000, 0, 1, 12)) / DAY;
     const n = Math.round(d - 0.0009 + longitude / 360);

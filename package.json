@@ -4,6 +4,8 @@
   "description": "Accessible world clocks with an optional real-time day and night map for MagicMirror².",
   "main": "MMM-WorldClockMap.js",
   "scripts": {
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
     "test": "node --test",
     "test:translations": "node scripts/check-translations.js"
   },
@@ -14,7 +16,7 @@
     "timezone"
   ],
   "author": "Brian Wente",
-  "license": "MIT AND CC-BY-NC-4.0",
+  "license": "MIT",
   "homepage": "https://github.com/bwente/MMM-WorldClockMap#readme",
   "bugs": {
     "url": "https://github.com/bwente/MMM-WorldClockMap/issues"
@@ -25,5 +27,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.12"
   }
 }

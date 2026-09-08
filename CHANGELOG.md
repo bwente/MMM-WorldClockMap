@@ -13,6 +13,8 @@ All notable changes to this project are documented here.
 - Restored a single-row large clock grid and reduced its tile height and typography.
 - Refreshed the clocks immediately when MagicMirror shows a suspended module again.
 - Added a verified line-layout screenshot to the README.
+- Added update instructions, copy-ready configuration examples, linting, dependency updates, and community conduct guidance for module-list readiness.
+- Clarified the MIT project license while retaining the map's separate CC BY-NC 4.0 attribution and terms.
 
 ## [0.1.0] - 2026-09-02
 
