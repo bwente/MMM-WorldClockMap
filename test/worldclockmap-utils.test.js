@@ -108,13 +108,54 @@ test("declares English as the module translation fallback", () => {
 
 test("refreshes immediately when resumed", () => {
   const definition = loadModuleDefinition();
-  let started = false;
-  let updateSpeed = null;
-  definition.resume.call({
-    timer: undefined,
-    start() { started = true; },
-    updateDom(speed) { updateSpeed = speed; }
-  });
-  assert.equal(started, true);
-  assert.equal(updateSpeed, 0);
+  let timerStarted = false;
+  let refreshSpeed = null;
+  const instance = {
+    suspended: true,
+    refresh(speed) { refreshSpeed = speed; },
+    startUpdateTimer() { timerStarted = true; }
+  };
+  definition.resume.call(instance);
+  assert.equal(instance.suspended, false);
+  assert.equal(refreshSpeed, 0);
+  assert.equal(timerStarted, true);
+});
+
+test("pauses off-page and refreshes when visible again", () => {
+  const definition = loadModuleDefinition();
+  let visibilityCallback;
+  let observedRoot;
+  global.IntersectionObserver = class {
+    constructor(callback) { visibilityCallback = callback; }
+    disconnect() {}
+    observe(root) { observedRoot = root; }
+  };
+
+  let timerStops = 0;
+  let timerStarts = 0;
+  let mapObserverStops = 0;
+  let refreshSpeed = null;
+  const instance = {
+    isVisible: true,
+    suspended: false,
+    mapResizeObserver: { disconnect() { mapObserverStops += 1; } },
+    stopUpdateTimer() { timerStops += 1; },
+    startUpdateTimer() { timerStarts += 1; },
+    refresh(speed) { refreshSpeed = speed; }
+  };
+  const root = { isConnected: true };
+
+  definition.observeVisibility.call(instance, root);
+  visibilityCallback([{ isIntersecting: false, intersectionRatio: 0 }]);
+  assert.equal(observedRoot, root);
+  assert.equal(instance.isVisible, false);
+  assert.equal(timerStops, 1);
+  assert.equal(mapObserverStops, 1);
+  assert.equal(instance.mapResizeObserver, null);
+
+  visibilityCallback([{ isIntersecting: true, intersectionRatio: 1 }]);
+  assert.equal(instance.isVisible, true);
+  assert.equal(refreshSpeed, 0);
+  assert.equal(timerStarts, 1);
+  delete global.IntersectionObserver;
 });

@@ -40,30 +40,48 @@ Module.register("MMM-WorldClockMap", {
 
   start() {
     this.now = new Date();
+    this.suspended = false;
+    this.isVisible = undefined;
     this.validationErrors = WorldClockMapUtils.validateConfig(this.config);
     if (this.validationErrors.length) {
       Log.error(`${this.name}: ${this.validationErrors.join("; ")}`);
     }
+    this.startUpdateTimer();
+  },
+
+  startUpdateTimer() {
+    this.stopUpdateTimer();
+    if (this.suspended || this.isVisible === false) return;
     const configuredInterval = Number(this.config.updateInterval);
     const updateInterval = Number.isFinite(configuredInterval) && configuredInterval > 0
       ? configuredInterval
       : this.config.showSeconds ? 1000 : 30000;
     this.timer = setInterval(() => {
-      this.now = new Date();
-      this.updateDom(this.config.animationSpeed);
+      this.refresh(this.config.animationSpeed);
     }, Math.max(1000, updateInterval));
   },
 
-  suspend() {
+  stopUpdateTimer() {
     clearInterval(this.timer);
+    this.timer = null;
+  },
+
+  refresh(animationSpeed = 0) {
+    this.now = new Date();
+    this.updateDom(animationSpeed);
+  },
+
+  suspend() {
+    this.suspended = true;
+    this.stopUpdateTimer();
     this.mapResizeObserver?.disconnect();
     this.mapResizeObserver = null;
   },
 
   resume() {
-    clearInterval(this.timer);
-    this.start();
-    this.updateDom(0);
+    this.suspended = false;
+    this.refresh(0);
+    this.startUpdateTimer();
   },
 
   notificationReceived(notification) {
@@ -79,6 +97,7 @@ Module.register("MMM-WorldClockMap", {
     root.className = `mmm-worldclockmap mmm-worldclockmap--${layout}`;
     root.style.setProperty("--wcm-accent", this.config.accentColor);
     root.setAttribute("aria-label", this.translate("WORLD_CLOCKS"));
+    requestAnimationFrame(() => this.observeVisibility(root));
 
     if (this.validationErrors.length) {
       const error = document.createElement("p");
@@ -94,6 +113,28 @@ Module.register("MMM-WorldClockMap", {
     for (const clock of this.config.clocks) clocks.appendChild(this.buildClock(clock));
     root.appendChild(clocks);
     return root;
+  },
+
+  observeVisibility(root) {
+    if (!root.isConnected || typeof IntersectionObserver !== "function") return;
+    this.visibilityObserver?.disconnect();
+    this.visibilityObserver = new IntersectionObserver(([entry]) => {
+      const visible = Boolean(entry?.isIntersecting && entry.intersectionRatio > 0);
+      if (visible === this.isVisible) return;
+      const wasVisible = this.isVisible;
+      this.isVisible = visible;
+      if (!visible) {
+        this.stopUpdateTimer();
+        this.mapResizeObserver?.disconnect();
+        this.mapResizeObserver = null;
+        return;
+      }
+      if (!this.suspended) {
+        if (wasVisible === false) this.refresh(0);
+        this.startUpdateTimer();
+      }
+    });
+    this.visibilityObserver.observe(root);
   },
 
   buildMap() {
