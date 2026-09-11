@@ -111,7 +111,7 @@ Use a wide region such as `top_center`, `middle_center`, `bottom_center`, or `fu
 | `animationSpeed` | number | `0` | MagicMirror DOM transition time. Zero avoids a flash every second. |
 | `accentColor` | string | `"#ffb229"` | CSS color for clock times, second hands, and map markers. |
 
-The update timer pauses when MagicMirror suspends the module or its rendered page is no longer visible. Returning to the page refreshes the clocks and map immediately before normal updates resume.
+The update timer pauses when MagicMirror suspends the module or its rendered page is no longer visible. Returning to the page refreshes the clocks and map immediately before normal updates resume. The module also responds to MMM-pages' `NEW_PAGE` notification, so page changes refresh the displayed time without waiting for the next scheduled update.
 
 ### Clock options
 

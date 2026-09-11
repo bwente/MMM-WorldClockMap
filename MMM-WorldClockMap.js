@@ -85,9 +85,15 @@ Module.register("MMM-WorldClockMap", {
   },
 
   notificationReceived(notification) {
+    if (notification === "NEW_PAGE") {
+      // MMM-pages can keep modules rendered while switching their page container.
+      // Refresh once on the page-change event so a newly revealed clock never has
+      // to wait for the normal update interval.
+      this.refresh(0);
+      return;
+    }
     if (notification === "WORLD_CLOCK_MAP_REFRESH") {
-      this.now = new Date();
-      this.updateDom(this.config.animationSpeed);
+      this.refresh(this.config.animationSpeed);
     }
   },
 

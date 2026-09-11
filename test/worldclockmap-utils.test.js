@@ -121,6 +121,21 @@ test("refreshes immediately when resumed", () => {
   assert.equal(timerStarted, true);
 });
 
+test("refreshes immediately when MMM-pages changes pages", () => {
+  const definition = loadModuleDefinition();
+  const refreshSpeeds = [];
+  const instance = {
+    config: { animationSpeed: 500 },
+    refresh(speed) { refreshSpeeds.push(speed); }
+  };
+
+  definition.notificationReceived.call(instance, "NEW_PAGE", 2);
+  definition.notificationReceived.call(instance, "WORLD_CLOCK_MAP_REFRESH");
+  definition.notificationReceived.call(instance, "UNRELATED_NOTIFICATION");
+
+  assert.deepEqual(refreshSpeeds, [0, 500]);
+});
+
 test("pauses off-page and refreshes when visible again", () => {
   const definition = loadModuleDefinition();
   let visibilityCallback;
