@@ -16,7 +16,6 @@ All notable changes to this project are documented here.
 - Added update instructions, copy-ready configuration examples, linting, dependency updates, and community conduct guidance for module-list readiness.
 - Clarified the MIT project license while retaining the map's separate CC BY-NC 4.0 attribution and terms.
 - Detected page-container visibility changes so clocks refresh immediately after non-native page switches while remaining paused off-page.
-- Responded directly to MMM-pages page-change notifications so newly shown clocks update without waiting for the normal interval.
 
 ## [0.1.0] - 2026-09-02
 
