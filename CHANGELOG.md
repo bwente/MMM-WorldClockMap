@@ -16,6 +16,7 @@ All notable changes to this project are documented here.
 - Added update instructions, copy-ready configuration examples, linting, dependency updates, and community conduct guidance for module-list readiness.
 - Clarified the MIT project license while retaining the map's separate CC BY-NC 4.0 attribution and terms.
 - Detected page-container visibility changes so clocks refresh immediately after non-native page switches while remaining paused off-page.
+- Declared the package module type and standardized documented and automated script execution on `node --run`.
 
 ## [0.1.0] - 2026-09-02
 

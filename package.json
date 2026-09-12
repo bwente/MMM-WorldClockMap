@@ -2,6 +2,7 @@
   "name": "mmm-worldclockmap",
   "version": "0.1.0",
   "description": "Accessible world clocks with an optional real-time day and night map for MagicMirror².",
+  "type": "commonjs",
   "main": "MMM-WorldClockMap.js",
   "scripts": {
     "lint": "biome lint .",

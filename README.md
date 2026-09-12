@@ -151,7 +151,7 @@ Companion integrations are optional; the module works normally without them.
 
 The module includes every locale currently shipped by MagicMirror², from Afrikaans (`af`) through Traditional Chinese (`zh-tw`). `Intl` localizes clock and calendar output. English is the complete fallback, translation keys are kept identical, and locale files are checked in tests.
 
-Run `npm test` and `npm run lint` before contributing. The tests also verify that every locale has exactly the English translation keys.
+Run `node --run test` and `node --run lint` before contributing. The tests also verify that every locale has exactly the English translation keys.
 
 ## Similar modules and design context
 
